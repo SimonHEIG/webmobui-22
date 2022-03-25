@@ -1,4 +1,5 @@
 import loadJson from '../lib/api.js'
+import {addAudio, playAudio} from '../audio.js'
 
 const songList = document.querySelector('.song-list')
 const songListItemTemplate = document.querySelector('#song-list-item-template')
@@ -7,6 +8,9 @@ function afficherSong(song) {
     const newSong = songListItemTemplate.content.cloneNode(true) // true pour cloner également les enfants du node
 
     newSong.querySelector('.list-item-title').innerText = song.title
+    newSong.querySelector('.play-button').addEventListener('click', () => {
+        playAudio(song)
+    })
     songList.append(newSong)
 }
 

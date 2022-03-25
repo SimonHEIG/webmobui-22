@@ -1,6 +1,7 @@
 import './css/index.css'
 import afficherArtistes from './affichage/artistes.js'
 import afficherSongs from './affichage/songs.js'
+import {playPause} from './audio.js'
 
 window.addEventListener('hashchange', displaySection)
 
@@ -19,7 +20,6 @@ function displaySection() {
 	switch (sectionSplit[0]) {
 		case '#artists':
 			if (sectionSplit[1]) { // S’il y a un deuxième élément, comme un id -> artiste-12 par ex
-				// faireQuelqueChoseAvec(sectionSplit[1])
 				console.log('artiste-12')
 				toggleSection('#songs')
 				afficherSongs(sectionSplit)
@@ -48,6 +48,9 @@ function toggleSection(section) {
 }
 
 
+document.querySelector('#player-control-play').addEventListener('click', () => {
+	playPause();
+})
+
 
 displaySection();
-
