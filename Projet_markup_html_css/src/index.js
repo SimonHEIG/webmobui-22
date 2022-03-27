@@ -2,6 +2,7 @@ import './css/index.css'
 import afficherArtistes from './affichage/artistes.js'
 import afficherSongs from './affichage/songs.js'
 import {playPause} from './audio.js'
+import afficherFavs from './affichage/favorites.js'
 
 window.addEventListener('hashchange', displaySection)
 
@@ -20,17 +21,17 @@ function displaySection() {
 	switch (sectionSplit[0]) {
 		case '#artists':
 			if (sectionSplit[1]) { // S’il y a un deuxième élément, comme un id -> artiste-12 par ex
-				console.log('artiste-12')
 				toggleSection('#songs')
 				afficherSongs(sectionSplit)
 			} else {
-				console.log('artiste')
 				afficherArtistes()
 			}
 			break
 		case '#player':
 			// faireAutreChose()
-			console.log('player')
+			break
+		case '#list':
+			afficherFavs()
 			break
 	}
 }

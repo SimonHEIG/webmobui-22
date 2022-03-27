@@ -14,7 +14,6 @@ function afficherArtiste(artiste) {
 async function afficherArtistes() {
     let artistes = await getArtists()
     artistList.replaceChildren() // Remplace les enfants par rien, donc supprime tous les enfants
-    console.log(artistes)
     for (const artiste of artistes) {
         afficherArtiste(artiste)
     }

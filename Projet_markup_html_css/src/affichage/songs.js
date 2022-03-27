@@ -1,17 +1,29 @@
 import loadJson from '../lib/api.js'
 import {addAudio, loadSongs, playAudio} from '../audio.js'
+import {toggleFav, isFav} from '../favs.js'
 
 const songList = document.querySelector('.song-list')
 const songListItemTemplate = document.querySelector('#song-list-item-template')
 
 function afficherSong(song, allSongs) {
     const newSong = songListItemTemplate.content.cloneNode(true) // true pour cloner également les enfants du node
-
+    console.log(newSong);
     newSong.querySelector('.list-item-title').innerText = song.title
     newSong.querySelector('.play-button').addEventListener('click', () => {
         loadSongs(allSongs)
         playAudio(song)
     })
+
+    let favIcon = newSong.querySelector('.favorite-button').querySelector('span')
+
+    if(isFav(song)){
+        favIcon.innerHTML = 'favorite'
+    }
+
+    newSong.querySelector('.favorite-button').addEventListener('click', () => {
+        toggleFav(song, favIcon)
+    })
+
     songList.append(newSong)
 }
 
